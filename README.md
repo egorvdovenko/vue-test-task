@@ -1,45 +1,115 @@
-# vue-test-task
+<!-- title: Тестовое задание -->
+<p>
+    <h1 align="center">Тестовое задание VueJS</h1>
+    <br>
+</p>
 
-This template should help get you started developing with Vue 3 in Vite.
+> После пуша Vue в ваш репозиторий, сделайте задание в любой другой ветке и PR в основную.  
+> Подойдет как Vue2, так и Vue3
 
-## Recommended IDE Setup
+</br>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Type Support for `.vue` Imports in TS
+![IMAGE](image.png "Image")
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Задача: сделать рабочую страницу с изображения.
 
-## Customize configuration
+Дизайн не требуется. Достаточно схематичной страницы, как на изображении.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+#### Блоки снизу:  
+Слева - вещи у пользователя  
+Справа - вещи на выбор
 
-## Project Setup
+#### Блоки сверху:  
+Слева - выбранные вещи из вещей пользователя (блок снизу-слева)  
+Справа - выбранная вещь из вещей на выбор (блок снизу-справа).
 
-```sh
-npm install
+Объекты вещей имеют одинаковую структуру, отличаются только названием и номером.
+
+---
+
+## Механика работы
+
+Снизу-справа можно выбрать одновременно `только 1 вещь`, которая должна отображаться справа-сверху.
+
+Снизу-слева можно выбрать `от 1 до 6 вещей`, которые должны отображаться в верхней левой части в порядке выбора.
+
+---
+
+Коллекции для заполнения нижних блоков слева и справа:
+
+### Блок слева
+```
+[
+    {
+        "id": 1,
+        "name": "Shoes 1"
+    },
+    {
+        "id": 2,
+        "name": "Shoes 2"
+    },
+    {
+        "id": 3,
+        "name": "Shoes 3"
+    },
+    {
+        "id": 4,
+        "name": "Shoes 4"
+    },
+    {
+        "id": 5,
+        "name": "T-shirt 1"
+    },
+    {
+        "id": 6,
+        "name": "T-shirt 2"
+    },
+    {
+        "id": 7,
+        "name": "T-shirt 3"
+    },
+    {
+        "id": 8,
+        "name": "T-shirt 4"
+    }
+]
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+### Блок справа
 ```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+[
+    {
+        "id": 11,
+        "name": "Jacket 1"
+    },
+    {
+        "id": 12,
+        "name": "Jacket 2"
+    },
+    {
+        "id": 13,
+        "name": "Jacket 3"
+    },
+    {
+        "id": 14,
+        "name": "Jacket 4"
+    },
+    {
+        "id": 15,
+        "name": "Hoodie 1"
+    },
+    {
+        "id": 16,
+        "name": "Hoodie 2"
+    },
+    {
+        "id": 17,
+        "name": "Hoodie 3"
+    },
+    {
+        "id": 18,
+        "name": "Hoodie 4"
+    }
+]
 ```
