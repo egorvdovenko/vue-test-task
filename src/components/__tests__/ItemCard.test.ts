@@ -23,7 +23,7 @@ describe('ItemCard', () => {
         },
       })
 
-      expect(wrapper.find('.item').classes()).toContain('selected')
+      expect(wrapper.find('.item-card').classes()).toContain('selected')
     })
 
     it('should apply disabled class when isDisabled is true', () => {
@@ -34,7 +34,7 @@ describe('ItemCard', () => {
         },
       })
 
-      expect(wrapper.find('.item').classes()).toContain('disabled')
+      expect(wrapper.find('.item-card').classes()).toContain('disabled')
     })
 
     it('should show remove button when showRemoveButton is true', () => {
@@ -45,7 +45,7 @@ describe('ItemCard', () => {
         },
       })
 
-      expect(wrapper.find('.remove-btn').exists()).toBe(true)
+      expect(wrapper.find('.item-card__remove-btn').exists()).toBe(true)
     })
 
     it('should not show remove button by default', () => {
@@ -53,7 +53,7 @@ describe('ItemCard', () => {
         props: { item: mockItem },
       })
 
-      expect(wrapper.find('.remove-btn').exists()).toBe(false)
+      expect(wrapper.find('.item-card__remove-btn').exists()).toBe(false)
     })
   })
 
@@ -63,7 +63,7 @@ describe('ItemCard', () => {
         props: { item: mockItem },
       })
 
-      await wrapper.find('.item').trigger('click')
+      await wrapper.find('.item-card').trigger('click')
 
       expect(wrapper.emitted('click')).toBeTruthy()
       expect(wrapper.emitted('click')?.[0]).toEqual([mockItem])
@@ -77,7 +77,7 @@ describe('ItemCard', () => {
         },
       })
 
-      await wrapper.find('.item').trigger('click')
+      await wrapper.find('.item-card').trigger('click')
 
       expect(wrapper.emitted('click')).toBeFalsy()
     })
@@ -90,7 +90,7 @@ describe('ItemCard', () => {
         },
       })
 
-      await wrapper.find('.item').trigger('click')
+      await wrapper.find('.item-card').trigger('click')
 
       expect(wrapper.emitted('click')).toBeTruthy()
       expect(wrapper.emitted('click')?.[0]).toEqual([mockItem])
@@ -106,7 +106,7 @@ describe('ItemCard', () => {
         },
       })
 
-      await wrapper.find('.remove-btn').trigger('click')
+      await wrapper.find('.item-card__remove-btn').trigger('click')
 
       expect(wrapper.emitted('remove')).toBeTruthy()
       expect(wrapper.emitted('remove')?.[0]).toEqual([mockItem])
@@ -120,7 +120,7 @@ describe('ItemCard', () => {
         },
       })
 
-      await wrapper.find('.remove-btn').trigger('click')
+      await wrapper.find('.item-card__remove-btn').trigger('click')
 
       // Click event should not be emitted when remove button is clicked
       expect(wrapper.emitted('click')).toBeFalsy()
@@ -133,10 +133,10 @@ describe('ItemCard', () => {
         props: { item: mockItem },
       })
 
-      const itemElement = wrapper.find('.item')
+      const itemElement = wrapper.find('.item-card')
       expect(itemElement.classes()).not.toContain('selected')
       expect(itemElement.classes()).not.toContain('disabled')
-      expect(wrapper.find('.remove-btn').exists()).toBe(false)
+      expect(wrapper.find('.item-card__remove-btn').exists()).toBe(false)
     })
   })
 
@@ -146,7 +146,7 @@ describe('ItemCard', () => {
         props: { item: mockItem },
       })
 
-      const itemElement = wrapper.find('.item')
+      const itemElement = wrapper.find('.item-card')
 
       if (itemElement.attributes('style')) {
         expect(itemElement.attributes('style')).not.toContain('cursor: not-allowed')
@@ -161,7 +161,7 @@ describe('ItemCard', () => {
         },
       })
 
-      expect(wrapper.find('.item').classes()).toContain('disabled')
+      expect(wrapper.find('.item-card').classes()).toContain('disabled')
     })
   })
 
@@ -175,7 +175,7 @@ describe('ItemCard', () => {
         },
       })
 
-      const itemElement = wrapper.find('.item')
+      const itemElement = wrapper.find('.item-card')
       expect(itemElement.classes()).toContain('selected')
       expect(itemElement.classes()).toContain('disabled')
     })
@@ -189,8 +189,8 @@ describe('ItemCard', () => {
         },
       })
 
-      expect(wrapper.find('.item').classes()).toContain('selected')
-      expect(wrapper.find('.remove-btn').exists()).toBe(true)
+      expect(wrapper.find('.item-card').classes()).toContain('selected')
+      expect(wrapper.find('.item-card__remove-btn').exists()).toBe(true)
     })
 
     it('should handle disabled state with remove button', async () => {
@@ -203,11 +203,11 @@ describe('ItemCard', () => {
       })
 
       // Remove button should still work even when item is disabled
-      await wrapper.find('.remove-btn').trigger('click')
+      await wrapper.find('.item-card__remove-btn').trigger('click')
       expect(wrapper.emitted('remove')).toBeTruthy()
 
       // But main click should not work
-      await wrapper.find('.item').trigger('click')
+      await wrapper.find('.item-card').trigger('click')
       expect(wrapper.emitted('click')).toBeFalsy()
     })
   })

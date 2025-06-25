@@ -11,7 +11,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   isSelected: false,
   isDisabled: false,
-  showRemoveButton: false
+  showRemoveButton: false,
 })
 
 const emit = defineEmits<{
@@ -31,27 +31,23 @@ const handleRemove = (): void => {
 </script>
 
 <template>
-  <div 
-    class="item"
-    :class="{ 
-      'selected': isSelected,
-      'disabled': isDisabled
+  <div
+    class="item-card"
+    :class="{
+      selected: isSelected,
+      disabled: isDisabled,
     }"
     @click="handleClick"
   >
     {{ item.name }}
-    <button 
-      v-if="showRemoveButton" 
-      @click.stop="handleRemove" 
-      class="remove-btn"
-    >
+    <button v-if="showRemoveButton" @click.stop="handleRemove" class="item-card__remove-btn">
       ✕
     </button>
   </div>
 </template>
 
-<style scoped>
-.item {
+<style scoped lang="scss">
+.item-card {
   background-color: white;
   border: 2px solid #ddd;
   border-radius: 6px;
@@ -65,57 +61,56 @@ const handleRemove = (): void => {
   align-items: center;
   justify-content: center;
   position: relative;
-}
 
-.item:hover {
-  border-color: #999;
-  background-color: #f5f5f5;
-}
+  &:hover {
+    border-color: #bbb;
+    background-color: #f9f9f9;
+  }
 
-.item.selected {
-  background-color: #e3f2fd;
-  border-color: #2196F3;
-  color: #1976D2;
-  font-weight: bold;
-}
+  &.selected {
+    background-color: #e3f2fd;
+    border-color: #2196f3;
+    color: #1976d2;
+    font-weight: bold;
+  }
 
-.item.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background-color: #f0f0f0;
-}
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f0f0f0;
+  }
 
-.item.disabled:hover {
-  border-color: #ddd;
-  background-color: #f0f0f0;
-}
+  &.disabled:hover {
+    border-color: #ddd;
+    background-color: #f0f0f0;
+  }
 
-.item:has(.remove-btn) {
-  background-color: #e8f5e8;
-  border-color: #4CAF50;
-  color: #2E7D32;
-  font-weight: bold;
-  padding-right: 30px;
-}
+  &:has(.item-card__remove-btn) {
+    background-color: #e8f5e8;
+    border-color: #4caf50;
+    color: #2e7d32;
+    font-weight: bold;
+  }
 
-.remove-btn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background: #ff4444;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  &__remove-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.remove-btn:hover {
-  background: #cc0000;
+    &:hover {
+      background: #cc0000;
+    }
+  }
 }
 </style>
