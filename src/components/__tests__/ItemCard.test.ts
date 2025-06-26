@@ -122,7 +122,6 @@ describe('ItemCard', () => {
 
       await wrapper.find('.item-card__remove-btn').trigger('click')
 
-      // Click event should not be emitted when remove button is clicked
       expect(wrapper.emitted('click')).toBeFalsy()
     })
   })
@@ -202,11 +201,9 @@ describe('ItemCard', () => {
         },
       })
 
-      // Remove button should still work even when item is disabled
       await wrapper.find('.item-card__remove-btn').trigger('click')
       expect(wrapper.emitted('remove')).toBeTruthy()
 
-      // But main click should not work
       await wrapper.find('.item-card').trigger('click')
       expect(wrapper.emitted('click')).toBeFalsy()
     })
