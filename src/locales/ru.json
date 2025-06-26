@@ -1,0 +1,16 @@
+{
+  "LABELS": {
+    "TITLE": "Vue Тестовое Задание",
+    "SELECTED_USER_ITEMS": "Выбранные вещи пользователя ({count}/6)",
+    "SELECTED_CHOICE_ITEM": "Выбранная вещь на выбор ({count}/1)",
+    "NO_USER_ITEMS_SELECTED": "Вещи пользователя не выбраны",
+    "NO_CHOICE_ITEM_SELECTED": "Вещь на выбор не выбрана",
+    "USER_ITEMS": "Вещи пользователя",
+    "CHOICE_ITEMS": "Вещи на выбор",
+    "LANGUAGE": "Язык",
+    "LANGUAGES": {
+      "EN": "English",
+      "RU": "Русский"
+    }
+  }
+}

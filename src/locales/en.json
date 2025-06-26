@@ -1,0 +1,16 @@
+{
+  "LABELS": {
+    "TITLE": "Vue Test Task",
+    "SELECTED_USER_ITEMS": "Selected User Items ({count}/6)",
+    "SELECTED_CHOICE_ITEM": "Selected Choice Item ({count}/1)",
+    "NO_USER_ITEMS_SELECTED": "No user items selected",
+    "NO_CHOICE_ITEM_SELECTED": "No choice item selected",
+    "USER_ITEMS": "User Items",
+    "CHOICE_ITEMS": "Choice Items",
+    "LANGUAGE": "Language",
+    "LANGUAGES": {
+      "EN": "English",
+      "RU": "Русский"
+    }
+  }
+}

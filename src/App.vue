@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import { useI18n } from 'vue-i18n'
 import { useItemsStore } from '@/stores/items'
 import { useItems } from '@/composables/useItems'
 import ItemCard from '@/components/ItemCard.vue'
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+
+const { t } = useI18n()
 
 const itemsStore = useItemsStore()
 const { userItems, choiceItems } = storeToRefs(itemsStore)
@@ -32,10 +36,11 @@ const {
 
 <template>
   <div class="app">
-    <h1>Vue Test Task</h1>
-    <div class="top-section">
+    <h1>{{ t('LABELS.TITLE') }}</h1>
+    <LanguageSwitcher />
+    <div class="section">
       <div class="items-section">
-        <h3>Selected User Items ({{ userSelectedItems.length }}/6)</h3>
+        <h3>{{ t('LABELS.SELECTED_USER_ITEMS', { count: userSelectedItems.length }) }}</h3>
         <div class="items-section__grid">
           <ItemCard
             v-for="item in userSelectedItems"
@@ -45,12 +50,12 @@ const {
             @remove="removeUserItem"
           />
           <div v-if="userSelectedItems.length === 0" class="items-section__placeholder">
-            No user items selected
+            {{ t('LABELS.NO_USER_ITEMS_SELECTED') }}
           </div>
         </div>
       </div>
       <div class="items-section">
-        <h3>Selected Choice Item ({{ selectedChoiceItems.length }}/1)</h3>
+        <h3>{{ t('LABELS.SELECTED_CHOICE_ITEM', { count: selectedChoiceItems.length }) }}</h3>
         <div class="items-section__grid">
           <ItemCard
             v-for="item in selectedChoiceItems"
@@ -60,14 +65,14 @@ const {
             @remove="removeChoiceItem"
           />
           <div v-if="selectedChoiceItems.length === 0" class="items-section__placeholder">
-            No choice item selected
+            {{ t('LABELS.NO_CHOICE_ITEM_SELECTED') }}
           </div>
         </div>
       </div>
     </div>
-    <div class="bottom-section">
+    <div class="section">
       <div class="items-section">
-        <h3>User Items</h3>
+        <h3>{{ t('LABELS.USER_ITEMS') }}</h3>
         <div class="items-section__grid">
           <ItemCard
             v-for="item in userItems"
@@ -80,7 +85,7 @@ const {
         </div>
       </div>
       <div class="items-section">
-        <h3>Choice Items</h3>
+        <h3>{{ t('LABELS.CHOICE_ITEMS') }}</h3>
         <div class="items-section__grid">
           <ItemCard
             v-for="item in choiceItems"
@@ -111,23 +116,22 @@ h1 {
   font-size: 24px;
 }
 
-.top-section,
-.bottom-section {
+.section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-bottom: 40px;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
-  .top-section,
-  .bottom-section {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
   .app {
     padding: 15px;
+  }
+
+  .section {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
   }
 }
 
