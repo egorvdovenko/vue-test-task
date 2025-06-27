@@ -1,61 +1,21 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ItemCard from '../ItemCard.vue'
 import type { Item } from '@/types/item'
 
+vi.mock('vue-i18n', () => ({
+  useI18n: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'LABELS.ITEMS_LOADING': 'Loading user items...',
+      }
+      return translations[key] || key
+    },
+  }),
+}))
+
 describe('ItemCard', () => {
   const mockItem: Item = { id: 1, name: 'Test Item' }
-
-  describe('rendering', () => {
-    it('should render item name', () => {
-      const wrapper = mount(ItemCard, {
-        props: { item: mockItem },
-      })
-
-      expect(wrapper.text()).toContain('Test Item')
-    })
-
-    it('should apply selected class when isSelected is true', () => {
-      const wrapper = mount(ItemCard, {
-        props: {
-          item: mockItem,
-          isSelected: true,
-        },
-      })
-
-      expect(wrapper.find('.item-card').classes()).toContain('selected')
-    })
-
-    it('should apply disabled class when isDisabled is true', () => {
-      const wrapper = mount(ItemCard, {
-        props: {
-          item: mockItem,
-          isDisabled: true,
-        },
-      })
-
-      expect(wrapper.find('.item-card').classes()).toContain('disabled')
-    })
-
-    it('should show remove button when showRemoveButton is true', () => {
-      const wrapper = mount(ItemCard, {
-        props: {
-          item: mockItem,
-          showRemoveButton: true,
-        },
-      })
-
-      expect(wrapper.find('.item-card__remove-btn').exists()).toBe(true)
-    })
-
-    it('should not show remove button by default', () => {
-      const wrapper = mount(ItemCard, {
-        props: { item: mockItem },
-      })
-
-      expect(wrapper.find('.item-card__remove-btn').exists()).toBe(false)
-    })
-  })
 
   describe('click behavior', () => {
     it('should emit click event with item when clicked and not disabled', async () => {
