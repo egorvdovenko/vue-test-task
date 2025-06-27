@@ -6,7 +6,9 @@
     "NO_USER_ITEMS_SELECTED": "No user items selected",
     "NO_CHOICE_ITEM_SELECTED": "No choice item selected",
     "USER_ITEMS": "User Items",
+    "USER_ITEMS_LOADING": "Loading user items...",
     "CHOICE_ITEMS": "Choice Items",
+    "CHOICE_ITEMS_LOADING": "Loading choice items...",
     "LANGUAGE": "Language",
     "LANGUAGES": {
       "EN": "English",

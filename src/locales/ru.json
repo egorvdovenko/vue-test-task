@@ -6,7 +6,9 @@
     "NO_USER_ITEMS_SELECTED": "Вещи пользователя не выбраны",
     "NO_CHOICE_ITEM_SELECTED": "Вещь на выбор не выбрана",
     "USER_ITEMS": "Вещи пользователя",
+    "USER_ITEMS_LOADING": "Загрузка вещей пользователя...",
     "CHOICE_ITEMS": "Вещи на выбор",
+    "CHOICE_ITEMS_LOADING": "Загрузка вещей на выбор...",
     "LANGUAGE": "Язык",
     "LANGUAGES": {
       "EN": "English",

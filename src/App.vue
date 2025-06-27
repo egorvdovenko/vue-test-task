@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { useItemsStore } from '@/stores/items'
@@ -9,7 +10,12 @@ import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 const { t } = useI18n()
 
 const itemsStore = useItemsStore()
-const { userItems, choiceItems } = storeToRefs(itemsStore)
+const { userItems, isLoadingUserItems, choiceItems, isLoadingChoiceItems } = storeToRefs(itemsStore)
+
+onMounted(() => {
+  itemsStore.getUserItems()
+  itemsStore.getChoiceItems()
+})
 
 const {
   selectedItems: userSelectedItems,
@@ -73,7 +79,8 @@ const {
     <div class="section">
       <div class="items-section">
         <h3>{{ t('LABELS.USER_ITEMS') }}</h3>
-        <div class="items-section__grid">
+        <div v-if="isLoadingUserItems">{{ t('LABELS.USER_ITEMS_LOADING') }}</div>
+        <div v-else class="items-section__grid">
           <ItemCard
             v-for="item in userItems"
             :key="item.id"
@@ -86,7 +93,8 @@ const {
       </div>
       <div class="items-section">
         <h3>{{ t('LABELS.CHOICE_ITEMS') }}</h3>
-        <div class="items-section__grid">
+        <div v-if="isLoadingChoiceItems">{{ t('LABELS.CHOICE_ITEMS_LOADING') }}</div>
+        <div v-else class="items-section__grid">
           <ItemCard
             v-for="item in choiceItems"
             :key="item.id"
