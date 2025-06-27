@@ -6,7 +6,11 @@ export type MessageLanguages = keyof typeof en
 
 export const SUPPORT_LOCALES = ['en', 'ru']
 
-export function setupI18n(options = { locale: 'en' }) {
+export function setupI18n(
+  options = {
+    locale: localStorage.getItem('locale') || 'en',
+  },
+) {
   const i18n = createI18n({
     legacy: false,
     locale: options.locale,

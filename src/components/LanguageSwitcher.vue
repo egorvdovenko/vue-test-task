@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { SUPPORT_LOCALES } from '@/plugins/i18n'
 
@@ -7,6 +8,13 @@ const { locale, t } = useI18n()
 const switchLanguage = (lang: string) => {
   locale.value = lang
 }
+
+watch(
+  () => locale.value,
+  (newLang) => {
+    localStorage.setItem('locale', newLang)
+  },
+)
 </script>
 
 <template>
