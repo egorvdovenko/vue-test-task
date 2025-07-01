@@ -38,14 +38,19 @@ export function useItems(
       }
     }
   }
-  
+
   function removeItem(item: Item) {
-    const index = selectedItems.value.findIndex(selected => selected.id === item.id)
+    const index = selectedItems.value.findIndex((selected) => selected.id === item.id)
+
     if (index > -1) {
-      selectedItems.value.splice(index, 1)
+      if (allowMultiple) {
+        selectedItems.value.splice(index, 1)
+      } else {
+        selectedItems.value = []
+      }
     }
   }
-  
+
   return {
     items,
     selectedItems,
