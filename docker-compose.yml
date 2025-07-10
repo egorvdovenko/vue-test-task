@@ -1,0 +1,7 @@
+services:
+  vue-app:
+    build: .
+    ports:
+      - '3173:3173'
+    environment:
+      - NODE_ENV=production
